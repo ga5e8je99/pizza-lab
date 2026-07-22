@@ -2,25 +2,106 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #121212;
+  --float-animation: float 3s ease-in-out infinite;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: Caveat;
+  src: url("/font/Caveat-Regular.ttf") format("truetype");
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #121212;
     --foreground: #ededed;
   }
 }
 
 body {
-  background: var(--background);
+  background: #121212;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+  margin: 0 !important;
+  overflow-x: hidden !important;
 }
+.logo {
+  font-family: Caveat !important;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes smokeMove {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) translateX(8px) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px) translateX(-8px) scale(1.12);
+    opacity: 0;
+  }
+}
+
+.smoke {
+  animation: smokeMove 4s ease-in-out infinite;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+select {
+  background-color: #121212;
+}
+option {
+  border: none;
+}
+.addCart {
+  border: 1px solid transparent;
+}
+.addCart:hover {
+  color: rgb(240, 177, 0);
+  border: 1px solid rgb(240, 177, 0);
+
+  background: transparent;
+}
+.addCart:hover svg {
+  color: rgb(240, 177, 0);
+}
+.heroImage {
+  -webkit-animation: opacity 10s ease-in 4s infinite reverse both;
+  animation: opacity 5s ease-in 4s infinite reverse both;
+}
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

@@ -1,0 +1,21 @@
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      animation: {
+        fadeIn: 'fadeIn 0.2s ease-in-out',
+        slideDown: 'slideDown 0.3s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideDown: {
+          '0%': { opacity: '0', transform: 'translateY(-20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+    },
+  },
+}
