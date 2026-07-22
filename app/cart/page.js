@@ -18,11 +18,11 @@ import {
   Calendar,
   Lock,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import AddressForm from "../Components/AddressSelector";
+import { Suspense } from "react";
 
-export default function CartPage() {
+function CartPageContent() {
   const steps = [
     { id: 1, name: "card" },
     { id: 2, name: "checkout" },
@@ -933,5 +933,13 @@ export default function CartPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function CartPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <CartPageContent />
+    </Suspense>
   );
 }
