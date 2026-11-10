@@ -33,93 +33,8 @@ import {
 import { IoIosArrowDown } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 
-// =============== الترجمات ===============
-const translations = {
-  en: {
-    dir: "ltr",
-    brand: "PizzaHouse",
-    since: "Since 1995",
-    home: "Home",
-    menu: "Menu",
-    about: "About Us",
-    contact: "Contact",
-    search: "Search",
-    signIn: "Sign In",
-    register: "Register",
-    orderNow: "Order Now",
-    todaySpecials: "Today's Specials",
-    offerCode: "20% off on all pizzas! Use code: PIZZA20",
-    viewOffers: "View Offers",
-    popular: "Popular",
-    starting: "Starting",
-    viewFullMenu: "View Full Menu",
-    newItems: "New Items",
-    mostPopular: "Most Popular",
-    cart: "Cart",
-    wishlist: "Wishlist",
-    offers: "Offers",
-    callUs: "Call Us",
-    findUs: "Find Us",
-    locations: "3 locations",
-    openUntil: "🕒 Open until 11:00 PM",
-    createAccount: "Create Account",
-    allDay: "24/7",
-    categories: [
-      {
-        name: "Pizza",
-        description: "Freshly baked, 30+ toppings",
-        price: "$12.99+",
-      },
-      {
-        name: "Drinks",
-        description: "Refreshing beverages, cold & hot",
-        price: "$2.99+",
-      },
-      {
-        name: "Desserts",
-        description: "Sweet treats, homemade",
-        price: "$5.99+",
-      },
-      { name: "All Items", description: "View full menu" },
-    ],
-  },
-  ar: {
-    dir: "rtl",
-    brand: "بيتزا هاوس",
-    since: "منذ 1995",
-    home: "الرئيسية",
-    menu: "القائمة",
-    about: "من نحن",
-    contact: "تواصل معنا",
-    search: "بحث",
-    signIn: "تسجيل الدخول",
-    register: "إنشاء حساب",
-    orderNow: "اطلب الآن",
-    todaySpecials: "عروض اليوم",
-    offerCode: "خصم 20% على جميع البيتزا! الكود: PIZZA20",
-    viewOffers: "عرض العروض",
-    popular: "الأكثر طلباً",
-    starting: "يبدأ من",
-    viewFullMenu: "عرض القائمة الكاملة",
-    newItems: "جديدنا",
-    mostPopular: "الأكثر شعبية",
-    cart: "السلة",
-    wishlist: "المفضلة",
-    offers: "العروض",
-    callUs: "اتصل بنا",
-    findUs: "موقعنا",
-    locations: "3 فروع",
-    openUntil: "🕒 مفتوح حتى الساعة 11 مساءً",
-    createAccount: "إنشاء حساب",
-    allDay: "24/7",
-    categories: [
-      { name: "بيتزا", description: "طازجة يومياً، أكثر من 30 إضافة", price: "12.99$+" },
-      { name: "مشروبات", description: "مشروبات منعشة، باردة وساخنة", price: "2.99$+" },
-      { name: "حلويات", description: "حلويات لذيذة، منزلية الصنع", price: "5.99$+" },
-      { name: "كل الأصناف", description: "عرض القائمة الكاملة" },
-    ],
-  },
-};
+import { useLanguage } from "../Context/LanguageContext";
+
 
 // =============== بيانات ثابتة ===============
 const navLinksData = [
@@ -177,9 +92,9 @@ const getCategoryColor = (color, type = "bg") => {
       border: "border-pink-500/30 hover:border-pink-500/60",
     },
     yellow: {
-      bg: "bg-linear-to-br from-yellow-500/20 to-yellow-600/10",
-      text: "text-yellow-400",
-      border: "border-yellow-500/30 hover:border-yellow-500/60",
+      bg: "bg-linear-to-br from-amber-500/20 to-amber-600/10",
+      text: "text-amber-400",
+      border: "border-amber-500/30 hover:border-amber-500/60",
     },
   };
   return colors[color]?.[type] ?? colors.yellow[type];
@@ -194,7 +109,7 @@ const LangToggle = ({ mobile = false, lang, onToggle }) => (
     className={`flex items-center gap-1.5 font-semibold transition-all rounded-xl
       ${mobile
         ? "px-4 py-3 w-full justify-center bg-neutral-800/60 hover:bg-neutral-800 text-gray-200"
-        : "px-3 py-2 hover:bg-white/10 text-gray-300 hover:text-yellow-400 border border-transparent hover:border-yellow-500/30"
+        : "px-3 py-2 hover:bg-white/10 text-gray-300 hover:text-amber-400 border border-transparent hover:border-amber-500/30"
       }`}
     aria-label="Toggle language"
   >
@@ -209,42 +124,33 @@ const LangToggle = ({ mobile = false, lang, onToggle }) => (
 export default function Navbar() {
   const { cart } = useCart();
   const pathname = usePathname();
+  const { lang, isRTL, t, toggleLang } = useLanguage();
 
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [authToken, setAuthToken] = useState(() => {
-    if (typeof window === "undefined") return null;
-    return localStorage.getItem("auth_token_pizza");
-  });
-  const [authLoading, setAuthLoading] = useState(false);
-  const [lang, setLang] = useState(() => {
-    if (typeof window === "undefined") return "en";
-    return localStorage.getItem("site_lang") ?? "en";
-  });
+  const [authToken, setAuthToken] = useState(null);
+  const [mounted, setMounted] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
 
-  const t = translations[lang];
-  const isRTL = t.dir === "rtl";
+  useEffect(() => {
+    setMounted(true);
+    setAuthToken(localStorage.getItem("auth_token_pizza"));
+
+    const handleAuthChange = () => {
+      setAuthToken(localStorage.getItem("auth_token_pizza"));
+    };
+    window.addEventListener("storage", handleAuthChange);
+    window.addEventListener("pizza_auth_change", handleAuthChange);
+    return () => {
+      window.removeEventListener("storage", handleAuthChange);
+      window.removeEventListener("pizza_auth_change", handleAuthChange);
+    };
+  }, []);
 
   const menuRef = useRef(null);
   const mobileMenuRef = useRef(null);
-
-  // عدد عناصر السلة من Context + localStorage
   const numOfCart = cart?.length ?? 0;
-
-  // تطبيق اتجاه الصفحة عند تغيير اللغة
-  useEffect(() => {
-    document.documentElement.dir = t.dir;
-    document.documentElement.lang = lang;
-  }, [lang, t.dir]);
-
-  // تبديل اللغة
-  const toggleLang = useCallback(() => {
-    const next = lang === "en" ? "ar" : "en";
-    setLang(next);
-    localStorage.setItem("site_lang", next);
-  }, [lang]);
 
   // متابعة التمرير
   useEffect(() => {
@@ -329,17 +235,17 @@ export default function Navbar() {
               <motion.div
                 animate={{ scale: [1, 1.15, 1], rotate: [0, 8, -8, 0] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
-                className="absolute transition-all duration-300 rounded-full -inset-2 bg-linear-to-r from-yellow-500/30 to-yellow-600/30 blur-md group-hover:from-yellow-500/50 group-hover:to-yellow-600/50"
+                className="absolute transition-all duration-300 rounded-full -inset-2 bg-gradient-to-r from-amber-500/30 to-amber-600/30 blur-md group-hover:from-amber-500/50 group-hover:to-amber-600/50"
               />
-              <div className="relative flex items-center justify-center overflow-hidden rounded-full shadow-2xl w-11 h-11 bg-linear-to-br from-yellow-400 to-yellow-600">
-                <Pizza className="w-6 h-6 text-white" />
+              <div className="relative flex items-center justify-center overflow-hidden rounded-full shadow-2xl w-11 h-11 bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600">
+                <Pizza className="w-6 h-6 text-neutral-950" />
               </div>
             </div>
             <div className="flex-col hidden sm:flex">
               <span className="text-xl font-bold tracking-tight text-white">
-                Pizza<span className="text-yellow-400">House</span>
+                Pizza<span className="text-amber-400">House</span>
               </span>
-              <span className="text-[10px] font-medium tracking-widest text-yellow-500/70 uppercase">
+              <span className="text-[10px] font-medium tracking-widest text-amber-500/80 uppercase">
                 {t.since}
               </span>
             </div>
@@ -365,8 +271,8 @@ export default function Navbar() {
                       <button
                         className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 font-medium text-sm ${
                           isLinkActive(link.href)
-                            ? "text-yellow-400 bg-yellow-500/15"
-                            : "text-gray-300 hover:text-yellow-400 hover:bg-white/5"
+                            ? "text-amber-400 bg-amber-500/15"
+                            : "text-gray-300 hover:text-amber-400 hover:bg-white/5"
                         }`}
                         aria-expanded={menuOpen}
                         aria-haspopup="true"
@@ -383,8 +289,8 @@ export default function Navbar() {
                       href={link.href}
                       className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 font-medium text-sm ${
                         isLinkActive(link.href)
-                          ? "text-yellow-400 bg-yellow-500/15"
-                          : "text-gray-300 hover:text-yellow-400 hover:bg-white/5"
+                          ? "text-amber-400 bg-amber-500/15"
+                          : "text-gray-300 hover:text-amber-400 hover:bg-white/5"
                       }`}
                     >
                       {link.icon}
@@ -508,7 +414,7 @@ export default function Navbar() {
               {/* زر تغيير اللغة */}
               <LangToggle lang={lang} onToggle={toggleLang} />
 
-              {!authLoading && authToken ? (
+              {mounted && authToken ? (
                 <>
                   {/* السلة */}
                   <Link href="/cart" className="relative p-2.5 transition-all rounded-xl hover:bg-white/10 group" aria-label={t.cart}>
@@ -541,7 +447,7 @@ export default function Navbar() {
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
                     <Link
                       href="/order"
-                      className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 shadow-lg bg-linear-to-r from-yellow-500 to-yellow-600 rounded-xl hover:from-yellow-600 hover:to-yellow-700 hover:shadow-yellow-500/30"
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm font-black text-neutral-950 transition-all duration-300 shadow-lg bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700 hover:shadow-amber-500/30"
                     >
                       <ShoppingBag className="w-4 h-4" />
                       <span className="hidden xl:inline">{t.orderNow}</span>
@@ -552,7 +458,7 @@ export default function Navbar() {
                 <>
                   <Link
                     href="/login"
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-gray-300 transition-all rounded-xl hover:bg-white/10 hover:text-yellow-400"
+                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-gray-300 transition-all rounded-xl hover:bg-white/10 hover:text-amber-400"
                   >
                     <User className="w-4 h-4" />
                     <span className="hidden xl:inline">{t.signIn}</span>
@@ -560,7 +466,7 @@ export default function Navbar() {
                   <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
                     <Link
                       href="/register"
-                      className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 shadow-lg bg-linear-to-r from-yellow-500 to-yellow-600 rounded-xl hover:from-yellow-600 hover:to-yellow-700"
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm font-black text-neutral-950 transition-all duration-300 shadow-lg bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700"
                     >
                       <LogIn className="w-4 h-4" />
                       <span className="hidden xl:inline">{t.register}</span>
@@ -732,7 +638,7 @@ export default function Navbar() {
 
                   {/* Action Buttons */}
                   <div className="pt-4 border-t border-neutral-800">
-                    {!authLoading && !authToken ? (
+                    {!mounted || !authToken ? (
                       <div className="space-y-2">
                         <Link
                           href="/login"

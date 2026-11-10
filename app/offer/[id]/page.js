@@ -57,7 +57,7 @@ export default function OfferDetailPage() {
 
     setTimeout(() => {
       setIsAdding(false);
-      toast.success(`✨ ${offer.title} added to cart!`, {
+      toast.success(`${offer.title} added to cart!`, {
         position: "bottom-right",
         autoClose: 2500,
         hideProgressBar: true,
@@ -212,7 +212,7 @@ export default function OfferDetailPage() {
             {/* Extras (similar to ProductCard) */}
             <div className="mb-6">
               <span className="flex items-center gap-1 mb-2 text-sm font-medium text-neutral-300">
-                <span className="text-yellow-400">✨</span> Add extras
+                Add extras
               </span>
               <div className="grid grid-cols-2 gap-2">
                 {extras.map((extra) => (
@@ -263,7 +263,7 @@ export default function OfferDetailPage() {
               <button
                 onClick={handleAddToCart}
                 disabled={isAdding}
-                className="relative flex items-center justify-center w-full gap-2 py-4 overflow-hidden font-bold text-black transition-all duration-300 shadow-lg bg-linear-to-r from-yellow-500 to-orange-500 rounded-xl hover:shadow-xl hover:from-yellow-600 hover:to-orange-600 disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="relative flex items-center justify-center w-full gap-2 py-4 overflow-hidden font-black text-neutral-950 transition-all duration-300 shadow-xl shadow-amber-900/30 bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-xl hover:shadow-2xl hover:from-amber-600 hover:to-amber-700 disabled:opacity-50 disabled:cursor-not-allowed group"
               >
                 <div className="absolute inset-0 transition-transform duration-500 origin-left transform scale-x-0 bg-white group-hover:scale-x-100 opacity-20" />
                 {isAdding ? (
@@ -283,11 +283,11 @@ export default function OfferDetailPage() {
               </button>
 
               <div className="flex items-center justify-center gap-4 mt-4 text-xs text-neutral-500">
-                <span>🚚 Free delivery</span>
+                <span>Free delivery</span>
                 <span>•</span>
-                <span>⚡ {offer.preparationTime}</span>
+                <span>{offer.preparationTime}</span>
                 <span>•</span>
-                <span>🔥 {offer.calories}</span>
+                <span>{offer.calories}</span>
               </div>
             </div>
           </div>

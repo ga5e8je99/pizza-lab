@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import {
@@ -18,20 +19,69 @@ import {
   Heart,
   LogOut,
   Award,
+  Sparkles,
   Pizza as PizzaIcon,
 } from "lucide-react";
 import ProductCard from "../Components/ProductCart";
 
 export default function ProfilePage() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("overview");
   const [userData, setUserData] = useState({
-    name: "John Doe",
-    email: "john@example.com",
-    phone: "+20 111 222 3333",
-    address: "123 Pizza Street, Cairo, Egypt",
-    joinDate: "January 2023",
+    name: "User",
+    email: "",
+    phone: "",
+    address: "",
+    joinDate: "Member",
     avatar: "/avatar.png",
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem("auth_token_pizza");
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+    fetch("/api/auth/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.user) {
+          setUserData((prev) => ({
+            ...prev,
+            ...data.user,
+            joinDate: data.user.createdAt
+              ? new Date(data.user.createdAt).toLocaleDateString()
+              : "2026",
+          }));
+          if (data.orders && data.orders.length > 0) {
+            setOrders(
+              data.orders.map((o) => ({
+                id: o.id,
+                date: new Date(o.createdAt).toLocaleDateString(),
+                items: (o.items || []).map((i) => `${i.quantity}x ${i.name}`),
+                total: o.total,
+                status: o.status,
+                deliveryTime: "30 min",
+              }))
+            );
+          }
+        } else {
+          router.push("/login");
+        }
+      })
+      .catch((err) => {
+        console.error("Profile fetch error:", err);
+      });
+  }, [router]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth_token_pizza");
+    localStorage.removeItem("user");
+    window.dispatchEvent(new Event("storage"));
+    router.push("/login");
+  };
 
   const [orders, setOrders] = useState([
     {
@@ -157,12 +207,6 @@ export default function ProfilePage() {
     sessionTimeout: "30min",
     loginAlerts: true,
   });
-
-  const handleLogout = () => {
-    localStorage.removeItem("auth_token_pizza");
-    localStorage.removeItem("user");
-    console.log("Logging out...");
-  };
 
   const copyInput = (text) => {
     navigator.clipboard
@@ -461,8 +505,8 @@ export default function ProfilePage() {
                 <div className="p-8 text-white bg-linear-to-r from-yellow-500 to-red-500 rounded-2xl">
                   <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
                     <div>
-                      <h3 className="mb-2 text-2xl font-bold">
-                        🎁 Special Offer!
+                      <h3 className="mb-2 text-2xl font-bold flex items-center gap-2">
+                        <Sparkles className="w-6 h-6 text-white" /> Special Offer!
                       </h3>
                       <p className="mb-4">
                         Get 20% off your next order as a loyal customer!

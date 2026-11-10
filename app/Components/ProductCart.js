@@ -52,6 +52,7 @@ export default function ProductCard({
   const [isAdding,       setIsAdding]       = useState(false);
   const [showDetails,    setShowDetails]    = useState(false);
   const [justAdded,      setJustAdded]      = useState(false);
+  const [imgSrc,         setImgSrc]         = useState(image || "/offer1.png");
 
   // ─── Price calculation ───────────────────────────────────────────────────
   const calcPrice = useCallback(() => {
@@ -142,7 +143,7 @@ export default function ProductCard({
       setJustAdded(true);
       setTimeout(() => setJustAdded(false), 2000);
 
-      toast.success(`✨ ${name} added to cart!`, {
+      toast.success(`${name} added to cart!`, {
         position:        "bottom-right",
         autoClose:       2200,
         hideProgressBar: true,
@@ -167,7 +168,7 @@ export default function ProductCard({
     >
       {/* ── Top accent line ── */}
       <div className="absolute top-0 left-0 right-0 z-20 h-[2px]
-                      bg-gradient-to-r from-yellow-500 via-orange-500 to-yellow-500
+                      bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600
                       origin-left scale-x-0 group-hover:scale-x-100
                       transition-transform duration-500 ease-out" />
 
@@ -185,9 +186,11 @@ export default function ProductCard({
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <Image
-              src={image}
+              src={imgSrc}
               alt={name}
               fill
+              unoptimized
+              onError={() => setImgSrc("/offer1.png")}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="z-10 object-contain p-5 drop-shadow-2xl"
               priority={false}
@@ -404,7 +407,7 @@ export default function ProductCard({
                         transition-all duration-300 shadow-md
                         ${justAdded
                           ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-green-500/25"
-                          : "bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-orange-500 hover:shadow-yellow-500/30 hover:shadow-lg"
+                          : "bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 text-neutral-950 font-black hover:from-amber-600 hover:to-amber-700 hover:shadow-amber-900/30 hover:shadow-xl"
                         }
                         disabled:opacity-60 disabled:cursor-not-allowed`}
           >

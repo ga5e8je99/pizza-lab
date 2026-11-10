@@ -4,20 +4,19 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Loading from "./Components/Loading";
 import Hero from "./Components/Hero";
-// import Offer from "./Components/Offer";
+import Offer from "./Components/Offer";
 import Menu from "./Components/Menu";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
- 
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 600);
 
     return () => clearTimeout(timer);
   }, []);
- 
 
   if (loading)
     return (
@@ -30,7 +29,7 @@ export default function Home() {
       <div className="opacity-0 animate-fadeIn">
         <Navbar active={"Home"} />
         <Hero />
-        {/* <Offer /> */}
+        <Offer />
         <Menu />
         <Footer />
       </div>

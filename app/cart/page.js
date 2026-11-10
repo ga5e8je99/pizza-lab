@@ -175,7 +175,7 @@ function CartPageContent() {
     );
 
     if (!foundCode) {
-      setAlertPromo("Code is not correct ❌");
+      setAlertPromo("Code is not valid.");
       setAppliedPromo(false);
       setCurrentDiscount({ type: null, value: 0, message: "" });
       return;
@@ -219,33 +219,48 @@ function CartPageContent() {
     }
 
     setIsPlacingOrder(true);
-    // هنا يمكنك استدعاء API لتخزين الطلب
-    // مثال:
-    // const orderData = {
-    //   items: cartItems,
-    //   subtotal,
-    //   deliveryFee,
-    //   tax,
-    //   total,
-    //   discount: appliedPromo ? currentDiscount : null,
-    //   payment: paymentForm,
-    //   address: addressData,
-    // };
-    // const response = await fetch('/api/orders', { method: 'POST', body: JSON.stringify(orderData) });
-    // if (response.ok) {
-    //   localStorage.removeItem('cart');
-    //   router.push('/order-success');
-    // } else {
-    //   alert('Error placing order');
-    // }
+    try {
+      const orderData = {
+        items: cartItems,
+        subtotal,
+        deliveryFee,
+        tax,
+        total: calculateTotal(),
+        discount: appliedPromo ? currentDiscount : null,
+        paymentMethod: paymentForm.cardNumber ? "card" : "cash",
+        customer: {
+          name: addressData.fullName || addressData.name || "Customer",
+          phone: addressData.phone || "",
+          city: addressData.city || "Cairo",
+          street: addressData.street || "",
+          building: addressData.building || "",
+          floor: addressData.floor || "",
+          apartment: addressData.apartment || "",
+          notes: addressData.notes || "",
+        },
+      };
 
-    // محاكاة نجاح الطلب
-    setTimeout(() => {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderData),
+      });
+
+      const resData = await response.json();
+      if (resData.success && resData.order) {
+        localStorage.removeItem("cart");
+        router.push(`/order-success?id=${resData.order.id}`);
+      } else {
+        alert("Error placing order: " + (resData.error || "Please try again"));
+      }
+    } catch (err) {
+      console.error("Order submission failed:", err);
+      // Fallback in case of local network issue
       localStorage.removeItem("cart");
-      alert("Order placed successfully! (Demo)");
-      router.push("/order-success"); // قم بإنشاء هذه الصفحة
+      router.push("/order-success");
+    } finally {
       setIsPlacingOrder(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -258,7 +273,7 @@ function CartPageContent() {
           <div className="flex items-center gap-4 mb-6">
             <Link
               href="/menu"
-              className="flex items-center gap-2 text-gray-200 transition-colors hover:text-yellow-600"
+              className="flex items-center gap-2 text-gray-200 transition-colors hover:text-amber-400"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Menu</span>
@@ -267,7 +282,7 @@ function CartPageContent() {
 
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
             <div>
-              <h1 className="mb-2 text-4xl font-bold text-yellow-500 md:text-5xl">
+              <h1 className="mb-2 text-4xl font-black text-amber-400 md:text-5xl">
                 Your Shopping Cart
               </h1>
               <p className="text-lg text-gray-400">
@@ -279,14 +294,14 @@ function CartPageContent() {
             <div className="flex items-center gap-4">
               <button
                 onClick={clearCart}
-                className="px-6 py-3 text-red-600 transition-colors border border-red-600 rounded-xl hover:bg-red-50"
+                className="px-6 py-3 text-red-500 transition-colors border border-red-500 rounded-xl hover:bg-red-500/10"
                 disabled={cartItems.length === 0}
               >
                 Clear Cart
               </button>
               <Link
                 href="/menu"
-                className="px-6 py-3 font-bold text-white transition-colors bg-yellow-500 opacity-90 rounded-xl hover:bg-yellow-600"
+                className="px-6 py-3 font-bold text-neutral-950 transition-all bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700 shadow-md shadow-amber-900/20"
               >
                 Continue Shopping
               </Link>
@@ -296,19 +311,19 @@ function CartPageContent() {
 
         {cartItems.length === 0 ? (
           <div className="py-20 text-center">
-            <div className="inline-flex p-6 mb-6 bg-yellow-100 rounded-full">
-              <ShoppingCart className="w-16 h-16 text-yellow-600" />
+            <div className="inline-flex p-6 mb-6 bg-amber-500/15 border border-amber-500/30 rounded-full">
+              <ShoppingCart className="w-16 h-16 text-amber-400" />
             </div>
             <h2 className="mb-4 text-3xl font-bold text-gray-200">
               Your cart is empty
             </h2>
-            <p className="max-w-md mx-auto mb-8 text-gray-600">
+            <p className="max-w-md mx-auto mb-8 text-gray-400">
               Looks like you haven&apos;t added any delicious pizzas to your
               cart yet.
             </p>
             <Link
               href="/menu"
-              className="inline-flex items-center gap-2 px-8 py-4 font-bold text-white transition-colors bg-yellow-500 opacity-90 rounded-xl hover:bg-yellow-600"
+              className="inline-flex items-center gap-2 px-8 py-4 font-black text-neutral-950 transition-all bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700 shadow-xl shadow-amber-900/30"
             >
               <ShoppingBag className="w-5 h-5" />
               Browse Menu
@@ -323,7 +338,7 @@ function CartPageContent() {
                   {cartItems.map((item) => (
                     <div
                       key={getItemKey(item)}
-                      className="p-6 transition-shadow bg-yellow-500 border border-yellow-200 shadow-lg opacity-90 rounded-2xl hover:shadow-xl"
+                      className="p-6 transition-all bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600 border border-amber-400/40 shadow-xl shadow-amber-950/20 rounded-2xl hover:shadow-2xl"
                     >
                       <div className="flex flex-col gap-6 md:flex-row">
                         <div className="relative w-full h-40 overflow-hidden md:w-40 rounded-xl">
@@ -436,8 +451,8 @@ function CartPageContent() {
               )}
 
               {currentStep === 2 && (
-                <div className="p-6 border border-yellow-500 shadow-md rounded-2xl">
-                  <h3 className="mb-6 text-2xl font-bold text-yellow-600">
+                <div className="p-6 border border-amber-500/30 bg-neutral-900/90 shadow-xl rounded-2xl">
+                  <h3 className="mb-6 text-2xl font-black text-amber-400">
                     Payment Details
                   </h3>
                   <form
@@ -647,7 +662,7 @@ function CartPageContent() {
                             handelSteps(3);
                           }
                         }}
-                        className="px-6 py-2 font-semibold text-white transition bg-yellow-500 rounded-lg hover:bg-yellow-600"
+                        className="px-6 py-2.5 font-bold text-neutral-950 transition bg-gradient-to-r from-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700 shadow-md shadow-amber-900/20"
                       >
                         Continue to Address
                       </button>
@@ -657,8 +672,8 @@ function CartPageContent() {
               )}
 
               {currentStep === 3 && (
-                <div className="p-6 border border-yellow-500 shadow-md rounded-2xl">
-                  <h3 className="mb-6 text-2xl font-bold text-yellow-600">
+                <div className="p-6 border border-amber-500/30 bg-neutral-900/90 shadow-xl rounded-2xl">
+                  <h3 className="mb-6 text-2xl font-black text-amber-400">
                     Delivery Address
                   </h3>
                   <AddressForm
@@ -682,7 +697,7 @@ function CartPageContent() {
                           alert("Please complete your address details.");
                         }
                       }}
-                      className="px-6 py-2 font-semibold text-white transition bg-yellow-500 rounded-lg hover:bg-yellow-600"
+                      className="px-6 py-2.5 font-bold text-neutral-950 transition bg-gradient-to-r from-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700 shadow-md shadow-amber-900/20"
                     >
                       Review Order
                     </button>
@@ -691,8 +706,8 @@ function CartPageContent() {
               )}
 
               {currentStep === 4 && (
-                <div className="p-6 border border-yellow-500 shadow-md rounded-2xl">
-                  <h3 className="mb-6 text-2xl font-bold text-yellow-600">
+                <div className="p-6 border border-amber-500/30 bg-neutral-900/90 shadow-xl rounded-2xl">
+                  <h3 className="mb-6 text-2xl font-black text-amber-400">
                     Confirm Your Order
                   </h3>
                   <div className="space-y-6">
@@ -752,8 +767,8 @@ function CartPageContent() {
             {/* ملخص الطلب (يظهر في جميع الخطوات) */}
             <div className="lg:col-span-1">
               <div className="sticky space-y-6 top-22">
-                <div className="p-6 border border-yellow-500 shadow-lg rounded-2xl">
-                  <h2 className="mb-6 text-2xl font-bold text-yellow-500">
+                <div className="p-6 border border-amber-500/30 bg-neutral-900/90 shadow-xl rounded-2xl">
+                  <h2 className="mb-6 text-2xl font-black text-amber-400">
                     Order Summary
                   </h2>
 
@@ -814,7 +829,7 @@ function CartPageContent() {
                     <div className="pt-4 border-t border-gray-300">
                       <div className="flex justify-between text-lg font-bold">
                         <span>Total</span>
-                        <span className="text-yellow-600">
+                        <span className="text-amber-400 font-extrabold">
                           {total.toFixed(2)} EGP
                         </span>
                       </div>
@@ -831,7 +846,7 @@ function CartPageContent() {
                         value={inputField}
                         onChange={(e) => setInputField(e.target.value)}
                         placeholder="Enter promo code"
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                        className="flex-1 px-4 py-2 border border-neutral-700 bg-neutral-800 text-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                         disabled={appliedPromo}
                       />
                       <button
@@ -852,7 +867,6 @@ function CartPageContent() {
                           appliedPromo ? "text-green-600" : "text-red-600"
                         }`}
                       >
-                        {appliedPromo ? "🎉 " : ""}
                         {alertPromo}
                       </p>
                     )}
@@ -884,7 +898,7 @@ function CartPageContent() {
                         else alert("Please complete address");
                       } else if (currentStep === 4) placeOrder();
                     }}
-                    className="block w-full py-4 mb-4 font-bold text-center text-white transition-colors bg-yellow-500 opacity-90 rounded-xl hover:bg-yellow-600"
+                    className="block w-full py-4 mb-4 font-black text-center text-neutral-950 transition-all bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700 shadow-xl shadow-amber-900/30"
                   >
                     <div className="flex items-center justify-center gap-2">
                       {currentStep === 4 ? (
@@ -911,16 +925,16 @@ function CartPageContent() {
                   </p>
                 </div>
 
-                <div className="p-6 border border-yellow-200 bg-yellow-50 rounded-2xl">
-                  <h3 className="mb-3 font-bold text-gray-900">
-                    🎁 Special Offer!
+                <div className="p-6 border border-amber-500/30 bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-2xl">
+                  <h3 className="mb-3 font-bold text-amber-400 flex items-center gap-2">
+                    <Gift className="w-5 h-5 text-amber-400" /> Special Offer!
                   </h3>
-                  <p className="mb-4 text-gray-700">
+                  <p className="mb-4 text-gray-300">
                     Add 2 drinks to your order and get 15% off your next pizza!
                   </p>
                   <Link
                     href="/menu/drinks"
-                    className="inline-block font-medium text-yellow-600 hover:text-yellow-700"
+                    className="inline-block font-bold text-amber-400 hover:text-amber-300"
                   >
                     Browse Drinks →
                   </Link>

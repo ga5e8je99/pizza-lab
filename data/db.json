@@ -1,0 +1,827 @@
+{
+  "users": [
+    {
+      "id": "usr-1",
+      "name": "Gamal Ahmed",
+      "email": "gamal@example.com",
+      "password": "password123",
+      "phone": "+20 100 123 4567",
+      "address": "New Cairo, Egypt",
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-1794303096899",
+      "name": "Gamal Ahmed",
+      "email": "gamal.ahmed.dev@gmail.com",
+      "password": "20102011f",
+      "phone": "+201285645073",
+      "address": "",
+      "token": "pizza_token_mwahqibnctzim88s",
+      "createdAt": "2026-11-10T09:31:36.899Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-1",
+      "name": "Pizza",
+      "nameAr": "بيتزا",
+      "icon": "Pizza",
+      "order": 1
+    },
+    {
+      "id": "cat-2",
+      "name": "Pizza Bar",
+      "nameAr": "بيتزا بار",
+      "icon": "Flame",
+      "order": 2
+    },
+    {
+      "id": "cat-3",
+      "name": "Dessert",
+      "nameAr": "حلويات",
+      "icon": "Cake",
+      "order": 3
+    },
+    {
+      "id": "cat-4",
+      "name": "Drinks",
+      "nameAr": "مشروبات",
+      "icon": "GlassWater",
+      "order": 4
+    },
+    {
+      "id": "cat-5",
+      "name": "Other",
+      "nameAr": "مقبلات وأطباق جانبية",
+      "icon": "Utensils",
+      "order": 5
+    }
+  ],
+  "items": [
+    {
+      "id": "1p",
+      "category": "Pizza",
+      "name": "Double Creamy Cheese",
+      "nameAr": "دبل كريمي تشيز",
+      "image": "https://roma2go.com/wp-content/uploads/2024/12/Double-Creamy-Cheese.webp",
+      "price": null,
+      "priceBySize": {
+        "s": 50,
+        "m": 75,
+        "l": 100,
+        "xl": 125
+      },
+      "sizes": [
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "cheese",
+        "tomato",
+        "cream",
+        "herbs"
+      ],
+      "description": "Creamy cheese pizza with rich flavors and four gourmet cheeses.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "2p",
+      "category": "Pizza",
+      "name": "Smokey Cheese Pizza",
+      "nameAr": "سموكي تشيز بيتزا",
+      "image": "https://roma2go.com/wp-content/uploads/2024/09/Smokey-Cheese.webp",
+      "price": null,
+      "priceBySize": {
+        "s": 100,
+        "m": 125,
+        "l": 150,
+        "xl": 175
+      },
+      "sizes": [
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "isDiscount": true,
+      "oldPrice": 150,
+      "discountPercentage": 20,
+      "ingredients": [
+        "cheese",
+        "smoke sauce",
+        "crispy onions"
+      ],
+      "description": "Smoky flavored cheese pizza with signature campfire sauce.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "3p",
+      "category": "Pizza",
+      "name": "Fresh Mushroom",
+      "nameAr": "مشروم طازج",
+      "image": "https://roma2go.com/wp-content/uploads/2024/02/Fresh-Mushroom-1.webp",
+      "price": null,
+      "priceBySize": {
+        "s": 75,
+        "m": 100,
+        "l": 125,
+        "xl": 150
+      },
+      "sizes": [
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "mushroom",
+        "cheese",
+        "thyme"
+      ],
+      "description": "Pizza topped with fresh mushrooms, melted mozzarella, and fragrant herbs.",
+      "isAvailable": true,
+      "popular": false
+    },
+    {
+      "id": "4p",
+      "category": "Pizza",
+      "name": "Mixed Cheese",
+      "nameAr": "مكس أجبان",
+      "image": "https://roma2go.com/wp-content/uploads/2023/01/mixedcheese.webp",
+      "price": null,
+      "priceBySize": {
+        "s": 120,
+        "m": 145,
+        "l": 170,
+        "xl": 200
+      },
+      "sizes": [
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "mozzarella",
+        "cheddar",
+        "parmesan",
+        "gouda"
+      ],
+      "description": "A rich blend of premium cheeses crafted for true cheese lovers.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "5p",
+      "category": "Pizza",
+      "name": "Pepperoni Supreme",
+      "nameAr": "بيبروني سوبريم",
+      "image": "/offer1.png",
+      "price": null,
+      "priceBySize": {
+        "s": 110,
+        "m": 140,
+        "l": 170,
+        "xl": 210
+      },
+      "sizes": [
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "isDiscount": true,
+      "oldPrice": 190,
+      "discountPercentage": 15,
+      "ingredients": [
+        "beef pepperoni",
+        "mozzarella",
+        "oregano",
+        "marinara"
+      ],
+      "description": "Generous beef pepperoni slices on bubbling melted mozzarella.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "6p",
+      "category": "Pizza",
+      "name": "BBQ Chicken Feast",
+      "nameAr": "دجاج باربيكيو فيست",
+      "image": "/offer4.png",
+      "price": null,
+      "priceBySize": {
+        "s": 115,
+        "m": 145,
+        "l": 180,
+        "xl": 220
+      },
+      "sizes": [
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "grilled chicken",
+        "bbq sauce",
+        "red onions",
+        "mozzarella"
+      ],
+      "description": "Tender grilled chicken tossed in sweet smoky BBQ sauce.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "1pb",
+      "category": "Pizza Bar",
+      "name": "Pizza Fries",
+      "nameAr": "بيتزا فرايز",
+      "image": "https://roma2go.com/wp-content/uploads/2025/08/Chicken-Ranch-Pizza-Bar.webp",
+      "price": 60,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "golden fries",
+        "mozzarella",
+        "pepperoni",
+        "pizza sauce"
+      ],
+      "description": "Crispy fries loaded with melted cheese and delicious pizza toppings.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "2pb",
+      "category": "Pizza Bar",
+      "name": "Chicken Rolls",
+      "nameAr": "تشيكن رولز",
+      "image": "https://roma2go.com/wp-content/uploads/2025/08/BBQ-Pizza-Bar-1.webp",
+      "price": 75,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "tender chicken",
+        "fresh dough",
+        "garlic butter"
+      ],
+      "description": "Freshly rolled dough filled with seasoned chicken and cheese.",
+      "isAvailable": true,
+      "popular": false
+    },
+    {
+      "id": "3pb",
+      "category": "Pizza Bar",
+      "name": "Cheesy Garlic Bread",
+      "nameAr": "خبز الثوم بالجبنة",
+      "image": "/Chicken-Ranch-Pizza-Bar.png",
+      "price": 45,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "crusty baguette",
+        "garlic butter",
+        "parmesan",
+        "mozzarella"
+      ],
+      "description": "Crispy toasted French bread smothered in homemade garlic butter and cheese.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "4pb",
+      "category": "Pizza Bar",
+      "name": "Crispy Mozzarella Sticks",
+      "nameAr": "أصابع الموتزاريلا المقرمشة",
+      "image": "/fries.png",
+      "price": 65,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "mozzarella",
+        "seasoned breadcrumbs",
+        "marinara dip"
+      ],
+      "description": "Golden fried breaded mozzarella served hot with warm marinara dipping sauce.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "1d",
+      "category": "Dessert",
+      "name": "Chocolate Lava Cake",
+      "nameAr": "كيك شوكولاتة لافا",
+      "image": "/lotuscake.png",
+      "price": 55,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "belgian chocolate",
+        "molten fudge",
+        "sugar",
+        "vanilla"
+      ],
+      "description": "Decadent warm chocolate cake with a rich molten chocolate center.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "2d",
+      "category": "Dessert",
+      "name": "Lotus Biscoff Cheesecake",
+      "nameAr": "تشيز كيك لوتس بيسكوف",
+      "image": "/lotuscake.png",
+      "price": 65,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "cream cheese",
+        "lotus spread",
+        "biscoff crust"
+      ],
+      "description": "Velvety smooth cheesecake layered over crunchy Lotus Biscoff biscuit crust.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "3d",
+      "category": "Dessert",
+      "name": "Nutella Hazelnut Pizza",
+      "nameAr": "بيتزا نوتيلا بالبندق",
+      "image": "/offer3.png",
+      "price": 85,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": true,
+      "oldPrice": 105,
+      "discountPercentage": 20,
+      "ingredients": [
+        "fresh dough",
+        "creamy nutella",
+        "crushed hazelnuts",
+        "powdered sugar"
+      ],
+      "description": "Warm pizza crust smothered in creamy Nutella and toasted roasted hazelnuts.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "4d",
+      "category": "Dessert",
+      "name": "Warm Cinnamon Apple Pie",
+      "nameAr": "فطيرة التفاح بالقرفة",
+      "image": "https://roma2go.com/wp-content/uploads/2024/04/Apple-Pie.webp",
+      "price": 50,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "apples",
+        "cinnamon",
+        "golden pastry crust"
+      ],
+      "description": "Flaky pastry crust stuffed with warm spiced caramelized apples.",
+      "isAvailable": true,
+      "popular": false
+    },
+    {
+      "id": "1dr",
+      "category": "Drinks",
+      "name": "Coca Cola (Can 330ml)",
+      "nameAr": "كوكاكولا كانز 330 مل",
+      "image": "/cola.png",
+      "price": 25,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "cola"
+      ],
+      "description": "Chilled refreshing Coca Cola can served ice cold.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "2dr",
+      "category": "Drinks",
+      "name": "Fresh Orange Juice",
+      "nameAr": "عصير برتقال فريش",
+      "image": "/cola.png",
+      "price": 35,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "100% fresh oranges"
+      ],
+      "description": "Pure freshly squeezed natural orange juice with no added sugar.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "3dr",
+      "category": "Drinks",
+      "name": "Sprite Lemon-Lime (Can 330ml)",
+      "nameAr": "سبرايت ليمون كانز 330 مل",
+      "image": "/cola.png",
+      "price": 25,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "sparkling lemon lime"
+      ],
+      "description": "Crisp, clean and refreshing lemon-lime sparkling soda.",
+      "isAvailable": true,
+      "popular": false
+    },
+    {
+      "id": "4dr",
+      "category": "Drinks",
+      "name": "Iced Peach Tea",
+      "nameAr": "شاي مثلج بالخوخ",
+      "image": "/cola.png",
+      "price": 35,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "brewed black tea",
+        "natural peach flavor",
+        "mint"
+      ],
+      "description": "Refreshing brewed iced tea infused with sweet peach nectar and fresh mint.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "5dr",
+      "category": "Drinks",
+      "name": "Mineral Water (Nestle 600ml)",
+      "nameAr": "مياه معدنية نستله 600 مل",
+      "image": "/cola.png",
+      "price": 15,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "natural mineral water"
+      ],
+      "description": "Pure bottled natural mineral water.",
+      "isAvailable": true,
+      "popular": false
+    },
+    {
+      "id": "1o",
+      "category": "Other",
+      "name": "Golden French Fries",
+      "nameAr": "بطاطس مقلية كرسبي",
+      "image": "/fries.png",
+      "price": 30,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "golden potato",
+        "sea salt"
+      ],
+      "description": "Crispy golden french fries seasoned with house salt and special herb seasoning.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "2o",
+      "category": "Other",
+      "name": "Cheesy Breadsticks",
+      "nameAr": "أصابع خبز بالجبنة",
+      "image": "https://roma2go.com/wp-content/uploads/2024/11/Cheesy-Breadsticks.webp",
+      "price": 45,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "dough",
+        "garlic butter",
+        "mozzarella"
+      ],
+      "description": "Baked breadsticks brushed with garlic butter and topped with mozzarella.",
+      "isAvailable": true,
+      "popular": true
+    },
+    {
+      "id": "3o",
+      "category": "Other",
+      "name": "Crispy Onion Rings",
+      "nameAr": "حلقات البصل المقرمشة",
+      "image": "/fries.png",
+      "price": 40,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "sweet onions",
+        "crispy batter",
+        "sauce"
+      ],
+      "description": "Golden fried thick-cut onion rings served with barbecue dipping sauce.",
+      "isAvailable": true,
+      "popular": false
+    },
+    {
+      "id": "4o",
+      "category": "Other",
+      "name": "Fresh Caesar Salad",
+      "nameAr": "سلطة سيزر طازجة",
+      "image": "/offer2.png",
+      "price": 60,
+      "priceBySize": null,
+      "sizes": [],
+      "isDiscount": false,
+      "oldPrice": null,
+      "discountPercentage": null,
+      "ingredients": [
+        "romaine lettuce",
+        "parmesan",
+        "garlic croutons",
+        "caesar dressing"
+      ],
+      "description": "Crisp romaine lettuce tossed in creamy Caesar dressing with parmesan and toasted croutons.",
+      "isAvailable": true,
+      "popular": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-20261109-101",
+      "createdAt": "2026-11-09T16:03:14.458Z",
+      "customer": {
+        "name": "أحمد علي",
+        "phone": "01012345678",
+        "city": "القاهرة الجديدة",
+        "street": "شارع التسعين الشمالي، عمارة 14",
+        "building": "14",
+        "floor": "3",
+        "apartment": "6",
+        "notes": "رن الجرس برجاء عدم استخدام الكلاكس"
+      },
+      "items": [
+        {
+          "id": "1p",
+          "name": "Double Creamy Cheese",
+          "size": "l",
+          "quantity": 1,
+          "price": 100,
+          "addons": [
+            {
+              "name": "Extra Cheese",
+              "price": 15
+            }
+          ]
+        },
+        {
+          "id": "1dr",
+          "name": "Coca Cola (Can 330ml)",
+          "size": null,
+          "quantity": 2,
+          "price": 25,
+          "addons": []
+        }
+      ],
+      "subtotal": 155,
+      "deliveryFee": 30,
+      "tax": 7.75,
+      "discount": null,
+      "total": 192.75,
+      "paymentMethod": "cash",
+      "status": "preparing"
+    },
+    {
+      "id": "ORD-20261109-102",
+      "createdAt": "2026-11-09T15:39:14.458Z",
+      "customer": {
+        "name": "سارة محمد",
+        "phone": "01198765432",
+        "city": "مدينة نصر",
+        "street": "شارع عباس العقاد، برج الزهور",
+        "building": "8",
+        "floor": "5",
+        "apartment": "12",
+        "notes": ""
+      },
+      "items": [
+        {
+          "id": "2p",
+          "name": "Smokey Cheese Pizza",
+          "size": "m",
+          "quantity": 1,
+          "price": 125,
+          "addons": []
+        },
+        {
+          "id": "1o",
+          "name": "Golden French Fries",
+          "size": null,
+          "quantity": 1,
+          "price": 30,
+          "addons": []
+        }
+      ],
+      "subtotal": 155,
+      "deliveryFee": 30,
+      "tax": 7.75,
+      "discount": {
+        "code": "LGF10",
+        "amount": 15.5
+      },
+      "total": 177.25,
+      "paymentMethod": "card",
+      "status": "pending"
+    },
+    {
+      "id": "ORD-20261109-103",
+      "createdAt": "2026-11-09T14:21:14.458Z",
+      "customer": {
+        "name": "محمود حسن",
+        "phone": "01234567890",
+        "city": "المعادي",
+        "street": "كورنيش النيل، أمام فندق سوفيتيل",
+        "building": "22",
+        "floor": "2",
+        "apartment": "4",
+        "notes": "استلام عند المدخل"
+      },
+      "items": [
+        {
+          "id": "4p",
+          "name": "Mixed Cheese",
+          "size": "xl",
+          "quantity": 1,
+          "price": 200,
+          "addons": []
+        },
+        {
+          "id": "1d",
+          "name": "Chocolate Lava Cake",
+          "size": null,
+          "quantity": 2,
+          "price": 55,
+          "addons": []
+        }
+      ],
+      "subtotal": 310,
+      "deliveryFee": 30,
+      "tax": 15.5,
+      "discount": null,
+      "total": 355.5,
+      "paymentMethod": "cash",
+      "status": "delivered"
+    }
+  ],
+  "offers": [
+    {
+      "id": "off-1",
+      "title": "Pepperoni Pizza Special",
+      "titleAr": "عرض البيبروني الذهبي",
+      "desc": "Spicy pepperoni with mozzarella and tomato sauce. Freshly baked.",
+      "descAr": "بيبروني حار مع موتزاريلا طازجة وصوص الطماطم المميز.",
+      "price": 199,
+      "oldPrice": 249,
+      "discount": "20% OFF",
+      "discountPercentage": 20,
+      "image": "/offer1.png",
+      "giftLabel": "+ Free Cola",
+      "giftLabelAr": "+ كانز كولا مجانا",
+      "active": true
+    },
+    {
+      "id": "off-2",
+      "title": "Cheese Lovers Delight",
+      "titleAr": "عرض عشاق الجبن",
+      "desc": "Parmesan, cheddar and mozzarella blend with garlic dipping sauce.",
+      "descAr": "مزيج فاخر من البارميزان والشيدر والموتزاريلا مع صوص الثوم.",
+      "price": 149,
+      "oldPrice": 199,
+      "discount": "25% OFF",
+      "discountPercentage": 25,
+      "image": "https://roma2go.com/wp-content/uploads/2023/01/mixedcheese.webp",
+      "giftLabel": "+ Extra Cheesy Breadsticks",
+      "giftLabelAr": "+ بريد ستيكس مجانا",
+      "active": true
+    },
+    {
+      "id": "off-3",
+      "title": "Family BBQ Chicken Feast",
+      "titleAr": "وليمة باربيكيو العائلة",
+      "desc": "Smoky BBQ sauce with tender chicken, red onions, and mozzarella.",
+      "descAr": "دجاج مشوي مع صوص الباربيكيو المدخن وجبنة موتزاريلا ذائبة.",
+      "price": 179,
+      "oldPrice": 259,
+      "discount": "30% OFF",
+      "discountPercentage": 30,
+      "image": "/offer4.png",
+      "giftLabel": "+ Fries and Drink",
+      "giftLabelAr": "+ بطاطس ومشروب مجانا",
+      "active": true
+    }
+  ],
+  "promoCodes": [
+    {
+      "code": "LGF10",
+      "discountPercentage": 10,
+      "type": "percentage",
+      "value": 10,
+      "minOrder": 100,
+      "active": true
+    },
+    {
+      "code": "PIZZA20",
+      "discountPercentage": 20,
+      "type": "percentage",
+      "value": 20,
+      "minOrder": 150,
+      "active": true
+    },
+    {
+      "code": "WELCOME15",
+      "discountPercentage": 15,
+      "type": "percentage",
+      "value": 15,
+      "minOrder": 80,
+      "active": true
+    },
+    {
+      "code": "FREESHIP",
+      "discountPercentage": 0,
+      "type": "delivery",
+      "value": 30,
+      "minOrder": 120,
+      "active": true
+    }
+  ],
+  "settings": {
+    "restaurantName": "Pizza Lab & House",
+    "tagline": "Authentic Handcrafted Pizza Since 1995",
+    "phone": "+20 100 123 4567",
+    "whatsapp": "+201001234567",
+    "email": "info@pizzalab.com",
+    "address": "New Cairo, Nasr City, Maadi, Cairo, Egypt",
+    "deliveryFee": 30,
+    "taxRate": 0.05,
+    "isOpen": true,
+    "currency": "EGP",
+    "announcement": "خصم 20% على جميع أنواع البيتزا اليوم! استخدم كود PIZZA20",
+    "orderNotificationSound": true
+  }
+}

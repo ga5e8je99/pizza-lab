@@ -139,7 +139,7 @@ export default function Contact() {
       <Navbar active={"Contact"} />
       
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] flex flex-col items-center justify-center  overflow-hidden pt-10 pb-20 text-center md:pb-90 px-9 md:pt-60 bg-yellow-500">
+      <section className="relative w-full h-[60vh] flex flex-col items-center justify-center  overflow-hidden pt-10 pb-20 text-center md:pb-90 px-9 md:pt-60 bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600">
         {/* Background Gradient */}
        
         <div className="absolute inset-0 bg-[url('/pizza.png')] bg-cover bg-center opacity-10" />
@@ -392,7 +392,7 @@ export default function Contact() {
                       className={`px-8 py-3 rounded-xl font-bold transition-all duration-300 flex items-center gap-2 ${
                         formStatus.submitting
                           ? "bg-gray-600 cursor-not-allowed"
-                          : "bg-linear-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700"
+                          : "bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-neutral-950 font-black shadow-lg shadow-amber-900/30"
                       }`}
                     >
                       {formStatus.submitting ? (

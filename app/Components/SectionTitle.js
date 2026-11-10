@@ -20,7 +20,7 @@ export default function SectionTitle({ imageRight, imageLeft, title }) {
         />
       </div>
 
-      <div className="w-full h-2 bg-yellow-500 rounded-3xl"></div>
+      <div className="w-full h-2 bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-3xl shadow-sm"></div>
     </div>
   );
 }

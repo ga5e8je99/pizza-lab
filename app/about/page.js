@@ -176,7 +176,7 @@ export default function About() {
       <Navbar active={"About Us"} />
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center w-full pt-10 pb-20 text-center bg-yellow-500 md:pb-60 px-9 md:pt-20">
+      <section className="relative flex flex-col items-center justify-center w-full pt-10 pb-20 text-center bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600 md:pb-60 px-9 md:pt-20">
         {/* Background Gradient */}
         <div className="absolute inset-0 bg-[url('/pizza.png')] bg-cover bg-center opacity-10" />
 
@@ -585,9 +585,9 @@ export default function About() {
       {/* CTA Section */}
       <section className="px-4 py-20 md:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="p-12 border bg-linear-to-br from-yellow-500/10 via-red-500/10 to-yellow-500/10 rounded-3xl border-yellow-500/20">
-            <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
-              Ready to Taste <span className="text-yellow-400">Perfection</span>
+          <div className="p-12 border bg-gradient-to-br from-amber-500/10 via-red-500/10 to-amber-500/10 rounded-3xl border-amber-500/30">
+            <h2 className="mb-6 text-4xl font-black text-white md:text-5xl">
+              Ready to Taste <span className="text-amber-400">Perfection</span>
               ?
             </h2>
             <p className="max-w-2xl mx-auto mb-10 text-xl text-gray-300">
@@ -595,10 +595,10 @@ export default function About() {
               their go-to for delicious, authentic pizza.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <button className="px-8 py-4 font-bold text-[#121212] transition-all duration-300 shadow-lg bg-linear-to-r from-yellow-500 to-yellow-600 rounded-xl hover:from-yellow-600 hover:to-yellow-700 hover:scale-105 active:scale-95">
+              <button className="px-8 py-4 font-black text-neutral-950 transition-all duration-300 shadow-xl shadow-amber-900/30 bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700 hover:scale-105 active:scale-95">
                 Order Now
               </button>
-              <button className="px-8 py-4 font-bold text-yellow-400 transition-all duration-300 bg-transparent border-2 border-yellow-500 rounded-xl hover:bg-yellow-500/10 hover:scale-105 active:scale-95">
+              <button className="px-8 py-4 font-bold text-amber-400 transition-all duration-300 bg-transparent border-2 border-amber-500/50 rounded-xl hover:bg-amber-500/10 hover:scale-105 active:scale-95">
                 View Our Menu
               </button>
             </div>

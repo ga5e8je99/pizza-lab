@@ -1,37 +1,61 @@
+"use client";
+
 import Link from "next/link";
 import Wave from "./Wave";
-import { Pizza } from "lucide-react";
+import { Pizza, MapPin, Phone, Mail } from "lucide-react";
+import { useLanguage } from "../Context/LanguageContext";
 
 export default function Footer() {
+  const { isRTL, lang } = useLanguage();
+
+  const isArabic = lang === "ar";
+
   return (
-    <footer className="relative px-6 py-12 text-black bg-yellow-500 md:px-20">
-      <div className="absolute left-0 w-full rotate-180 z-55 -top-2 ">
-        <Wave/>
+    <footer
+      dir={isRTL ? "rtl" : "ltr"}
+      className="relative px-6 py-14 text-neutral-950 bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600 md:px-20 mt-16"
+    >
+      {/* Wave Transition from Dark Background */}
+      <div className="absolute left-0 right-0 w-full rotate-180 -top-8 z-20 pointer-events-none">
+        <Wave color="#121212" />
       </div>
-      <div className="absolute inset-0 bg-[url('/pizza.png')] bg-cover bg-center opacity-20 z-50 " />
-      <div className="container relative grid items-center justify-center grid-cols-1 gap-10 mx-auto text-center mt-30 md:grid-cols-4 md:text-left z-60">
-        {/* Logo */}
-        <div>
+
+      <div className="container relative z-30 grid grid-cols-1 gap-10 mx-auto text-center md:grid-cols-4 md:text-start pt-6">
+        {/* Brand */}
+        <div className="space-y-4">
           <div className="flex items-center justify-center gap-3 md:justify-start">
-            <Pizza/>
-            <h1 className="text-4xl font-extrabold md:text-3xl logo">Pizza House</h1>
+            <div className="p-2 rounded-xl bg-neutral-950 text-amber-400 shadow-md">
+              <Pizza className="w-6 h-6" />
+            </div>
+            <h2 className="text-3xl font-black text-neutral-950">
+              {isArabic ? "بيتزا هاوس" : "Pizza House"}
+            </h2>
           </div>
-          <p className="mt-4 text-base font-medium md:text-lg text-black/80">
-            The best pizza in your city — fresh, hot, and delivered fast.
+          <p className="text-sm sm:text-base font-semibold text-neutral-950/85 leading-relaxed">
+            {isArabic
+              ? "أفضل بيتزا إيطالية في مدينتك — طازجة يومياً، ساخنة ومقرمشة، وتصلك بأعلى جودة وأسرع وقت."
+              : "The finest Italian pizza in your city — fresh daily, piping hot and crispy, delivered fast."}
           </p>
         </div>
 
-        {/* Menu */}
+        {/* Menu Links */}
         <div>
-          <h3 className="mb-4 text-xl font-bold md:text-2xl">Menu</h3>
-          <ul className="space-y-2 text-base md:text-lg">
-            {["Pizza", "Drinks", "Offers", "Desserts"].map((item) => (
-              <li key={item}>
+          <h3 className="mb-4 text-lg font-black text-neutral-950 uppercase tracking-wide">
+            {isArabic ? "القائمة" : "Menu"}
+          </h3>
+          <ul className="space-y-2.5 text-sm sm:text-base font-bold text-neutral-900/90">
+            {[
+              { href: "/menu/pizza", labelAr: "البيتزا", labelEn: "Pizza" },
+              { href: "/menu/drinks", labelAr: "المشروبات", labelEn: "Drinks" },
+              { href: "/menu/desserts", labelAr: "الحلويات", labelEn: "Desserts" },
+              { href: "/offers", labelAr: "العروض الخاصة", labelEn: "Offers" },
+            ].map((item) => (
+              <li key={item.href}>
                 <Link
-                  href="/"
-                  className="transition-colors duration-200 hover:underline hover:text-black/70"
+                  href={item.href}
+                  className="transition-colors hover:text-red-800 hover:underline"
                 >
-                  {item}
+                  {isArabic ? item.labelAr : item.labelEn}
                 </Link>
               </li>
             ))}
@@ -40,88 +64,54 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h3 className="mb-4 text-xl font-bold md:text-2xl">Quick Links</h3>
-          <ul className="space-y-2 text-base md:text-lg">
-            {["About Us", "Contact", "Order Now", "FAQ"].map((item) => (
-              <li key={item}>
+          <h3 className="mb-4 text-lg font-black text-neutral-950 uppercase tracking-wide">
+            {isArabic ? "روابط سريعة" : "Quick Links"}
+          </h3>
+          <ul className="space-y-2.5 text-sm sm:text-base font-bold text-neutral-900/90">
+            {[
+              { nameAr: "من نحن", nameEn: "About Us", href: "/about" },
+              { nameAr: "تواصل معنا", nameEn: "Contact", href: "/contact" },
+              { nameAr: "اطلب الآن", nameEn: "Order Now", href: "/menu" },
+              { nameAr: "لوحة التحكم", nameEn: "Admin Dashboard", href: "http://localhost:3001" },
+            ].map((item) => (
+              <li key={item.href}>
                 <Link
-                  href="/"
-                  className="transition-colors duration-200 hover:text-black/70 hover:underline"
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  className="transition-colors hover:text-red-800 hover:underline"
                 >
-                  {item}
+                  {isArabic ? item.nameAr : item.nameEn}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Contact */}
+        {/* Contact Information */}
         <div>
-          <h3 className="mb-4 text-xl font-bold md:text-2xl">Contact</h3>
-          <ul className="space-y-4 text-base text-center md:text-lg">
+          <h3 className="mb-4 text-lg font-black text-neutral-950 uppercase tracking-wide">
+            {isArabic ? "تواصل معنا" : "Contact"}
+          </h3>
+          <ul className="space-y-3 text-sm sm:text-base font-bold text-neutral-900/90">
             <li className="flex items-center justify-center gap-3 md:justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-                />
-              </svg>
-              123 Pizza Street
-            </li>
-            <li className="flex items-center justify-center gap-3 md:justify-start ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
-                />
-              </svg>
-              0100 123 4567
+              <MapPin className="w-5 h-5 shrink-0 text-red-700" />
+              <span>{isArabic ? "123 شارع البيتزا، القاهرة" : "123 Pizza Street"}</span>
             </li>
             <li className="flex items-center justify-center gap-3 md:justify-start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"
-                />
-              </svg>
-              pizzahouse@email.com
+              <Phone className="w-5 h-5 shrink-0 text-red-700" />
+              <span dir="ltr">0100 123 4567</span>
+            </li>
+            <li className="flex items-center justify-center gap-3 md:justify-start">
+              <Mail className="w-5 h-5 shrink-0 text-red-700" />
+              <span>support@pizzahouse.com</span>
             </li>
           </ul>
         </div>
       </div>
 
-      {/* Bottom */}
-      <div className="relative pt-6 mt-10 text-sm font-semibold text-center border-t border-black/40 md:text-lg text-black/80 z-60">
-        © {new Date().getFullYear()} Pizza House — All Rights Reserved.
+      {/* Bottom Copyright */}
+      <div className="relative pt-6 mt-10 text-xs sm:text-sm font-bold text-center border-t border-neutral-950/20 text-neutral-950/80 z-30">
+        © {new Date().getFullYear()} {isArabic ? "بيتزا هاوس — جميع الحقوق محفوظة" : "Pizza House — All Rights Reserved."}
       </div>
     </footer>
   );

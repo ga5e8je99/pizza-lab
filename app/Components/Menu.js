@@ -67,10 +67,9 @@ export default function Menu() {
             <div
               key={c.slug}
               onClick={() => handleCategoryClick(c.slug)}
-              className="flex gap-3.5 items-center justify-center bg-yellow-500 opacity-90
-                 rounded-4xl shadow-md hover:shadow-2xl hover:-translate-y-1 
-                 duration-300 cursor-pointer p-2 text-center group transition-all
-                 hover:bg-yellow-400"
+              className="flex gap-3.5 items-center justify-center bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600
+                 rounded-3xl shadow-lg shadow-amber-950/20 hover:shadow-2xl hover:shadow-amber-500/25 hover:-translate-y-1.5 
+                 duration-300 cursor-pointer p-3 text-center group transition-all border border-amber-400/20"
             >
               <div className="flex items-center justify-center transition-transform size-20 group-hover:scale-110">
                 <Image
@@ -81,7 +80,7 @@ export default function Menu() {
                   height={80}
                 />
               </div>
-              <h3 className="mt-3 text-lg font-semibold text-gray-900">
+              <h3 className="mt-2 text-lg font-black text-neutral-950">
                 {c.name}
               </h3>
             </div>

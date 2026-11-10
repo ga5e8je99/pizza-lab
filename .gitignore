@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+pizza-dashboard/.next/
+pizza-dashboard/node_modules/
 
 # production
 /build

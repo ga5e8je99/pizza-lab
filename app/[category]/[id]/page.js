@@ -200,7 +200,7 @@ export default function Page() {
         <div className="grid grid-cols-1 gap-12 mb-12 lg:grid-cols-2">
           {/* Product Image */}
           <div className="flex flex-col items-center">
-            <div className="relative w-full max-w-md overflow-hidden bg-yellow-500 shadow-xl rounded-2xl">
+            <div className="relative w-full max-w-md overflow-hidden bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600 shadow-2xl rounded-3xl border border-amber-400/30">
               <div className="absolute inset-0 bg-[url('/pizza.png')] bg-cover bg-center opacity-10" />
               <Image
                 src={productInfo.image}
@@ -218,7 +218,7 @@ export default function Page() {
               )}
             </div>
             <div className="mt-8 text-center lg:text-left">
-              <h3 className="mb-4 text-2xl font-bold text-yellow-500">
+              <h3 className="mb-4 text-2xl font-bold text-amber-400">
                 Description
               </h3>
               <p className="leading-relaxed text-gray-200">
@@ -230,7 +230,7 @@ export default function Page() {
           {/* Product Details */}
           <div className="flex flex-col">
             <div className="flex flex-col justify-between gap-4 mb-6 md:flex-row md:items-center">
-              <h1 className="text-3xl font-bold text-yellow-500 md:text-4xl">
+              <h1 className="text-3xl font-black text-amber-400 md:text-4xl">
                 {productInfo.name}
               </h1>
               {productInfo.isDiscount && productInfo.discountPercentage && (
@@ -278,8 +278,8 @@ export default function Page() {
                         onClick={() => setSelectedSize(size)}
                         className={`px-6 py-3 rounded-xl border-2 transition-all duration-200 ${
                           selectedSize === size
-                            ? "border-yellow-500 text-yellow-500 font-bold"
-                            : "border-gray-300 text-gray-300 hover:border-gray-200"
+                            ? "border-amber-500 text-amber-400 font-bold bg-amber-500/10"
+                            : "border-gray-700 text-gray-300 hover:border-gray-500"
                         }`}
                       >
                         <div className="font-medium">{getSizeLabel(size)}</div>
@@ -305,27 +305,27 @@ export default function Page() {
                       onClick={() => handleAddonToggle(addon.id)}
                       className={`flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
                         selectedAddons.includes(addon.id)
-                          ? "border-yellow-500 text-yellow-500"
-                          : "border-gray-200 hover:border-gray-300"
+                          ? "border-amber-500 text-amber-400 bg-amber-500/10"
+                          : "border-neutral-800 hover:border-neutral-700"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div
                           className={`w-5 h-5 rounded border flex items-center justify-center ${
                             selectedAddons.includes(addon.id)
-                              ? "bg-yellow-500 border-yellow-500"
-                              : "bg-white border-gray-300"
+                              ? "bg-amber-500 border-amber-500"
+                              : "bg-neutral-800 border-neutral-700"
                           }`}
                         >
                           {selectedAddons.includes(addon.id) && (
-                            <Check className="w-3 h-3 text-white" />
+                            <Check className="w-3 h-3 text-neutral-950 font-bold" />
                           )}
                         </div>
                         <span className="font-medium">{addon.name}</span>
                       </div>
                       <span
                         className={`font-semibold ${
-                          addon.price > 0 ? "text-yellow-500" : "text-red-600"
+                          addon.price > 0 ? "text-amber-400" : "text-red-500"
                         }`}
                       >
                         {addon.price > 0 ? `+${addon.price} EGP` : "Free"}
@@ -412,7 +412,7 @@ export default function Page() {
                 <div className="flex justify-between pt-4 border-t border-gray-300">
                   <span className="text-lg font-semibold">Total</span>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-yellow-600">
+                    <div className="text-2xl font-black text-amber-400">
                       {totalPrice.toFixed(2)} EGP
                     </div>
                     <div className="text-sm text-gray-500">
@@ -426,7 +426,7 @@ export default function Page() {
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className="flex items-center justify-center w-full gap-3 px-6 py-4 font-bold text-gray-900 transition-all duration-200 bg-yellow-500 shadow-lg hover:bg-yellow-600 rounded-xl hover:shadow-xl active:scale-95"
+              className="flex items-center justify-center w-full gap-3 px-6 py-4 font-black text-neutral-950 transition-all duration-200 bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 shadow-xl shadow-amber-900/30 hover:from-amber-600 hover:to-amber-700 rounded-xl hover:shadow-2xl active:scale-95"
             >
               <ShoppingCart className="w-6 h-6" />
               <span className="text-lg">

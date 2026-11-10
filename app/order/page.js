@@ -132,7 +132,7 @@ export default function Order() {
         <div className="container px-4 py-12 mx-auto max-w-7xl">
           {/* رأس الصفحة */}
           <div className="mb-12 text-center">
-            <h1 className="mb-4 text-5xl font-bold text-yellow-500">
+            <h1 className="mb-4 text-5xl font-black text-amber-400">
               Find a Pizza House Near You
             </h1>
             <p className="max-w-2xl mx-auto text-xl text-gray-300">
@@ -143,11 +143,11 @@ export default function Order() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* قائمة المطاعم */}
             <div className="lg:col-span-2">
-              <div className="p-6 mb-8 bg-yellow-500 border border-yellow-200 rounded-2xl">
-                <h2 className="mb-6 text-3xl font-bold text-gray-900">
+              <div className="p-6 mb-8 bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600 border border-amber-400/40 rounded-3xl shadow-xl shadow-amber-950/20">
+                <h2 className="mb-6 text-3xl font-black text-neutral-950">
                   Our Locations
                 </h2>
-                <p className="mb-6 text-gray-800">
+                <p className="mb-6 font-semibold text-neutral-900">
                   Select a restaurant to view details and order options
                 </p>
                 
@@ -157,7 +157,7 @@ export default function Order() {
                       key={restaurant.id}
                       className={`p-6 transition-all duration-300 bg-white border rounded-2xl cursor-pointer hover:shadow-xl ${
                         selectedRestaurant?.id === restaurant.id
-                          ? "border-yellow-500 ring-2 ring-yellow-500"
+                          ? "border-neutral-950 ring-2 ring-neutral-950"
                           : "border-gray-200"
                       }`}
                       onClick={() => handleSelectRestaurant(restaurant)}
@@ -166,26 +166,26 @@ export default function Order() {
                         <h3 className="text-xl font-bold text-gray-900">
                           {restaurant.name}
                         </h3>
-                        <div className="flex items-center gap-2 px-3 py-1 bg-yellow-100 rounded-full">
-                          <span className="font-bold text-yellow-700">
-                            ★ {restaurant.rating}
+                        <div className="flex items-center gap-2 px-3 py-1 bg-amber-500/15 rounded-full">
+                          <span className="font-bold text-amber-700">
+                            Rating: {restaurant.rating}
                           </span>
                         </div>
                       </div>
                       
                       <div className="space-y-3">
                         <div className="flex items-start gap-3">
-                          <MapPin className="w-5 h-5 mt-1 text-yellow-500 shrink-0" />
+                          <MapPin className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
                           <p className="text-gray-600">{restaurant.address}</p>
                         </div>
                         
                         <div className="flex items-center gap-3">
-                          <Phone className="w-5 h-5 text-yellow-500 shrink-0" />
+                          <Phone className="w-5 h-5 text-amber-600 shrink-0" />
                           <p className="text-gray-600">{restaurant.phone}</p>
                         </div>
                         
                         <div className="flex items-center gap-3">
-                          <Clock className="w-5 h-5 text-yellow-500 shrink-0" />
+                          <Clock className="w-5 h-5 text-amber-600 shrink-0" />
                           <p className="text-gray-600">{restaurant.hours}</p>
                         </div>
                       </div>
@@ -200,7 +200,7 @@ export default function Order() {
                       </div>
                       
                       <button
-                        className="flex items-center gap-2 mt-6 font-medium text-yellow-600 hover:text-yellow-700"
+                        className="flex items-center gap-2 mt-6 font-bold text-amber-700 hover:text-amber-800"
                         onClick={(e) => {
                           e.stopPropagation();
                           window.open(restaurant.map, '_blank');
@@ -216,30 +216,30 @@ export default function Order() {
               </div>
               
               {/* مزايا إضافية */}
-              <div className="p-6 bg-linear-to-r from-yellow-500 to-yellow-600 rounded-2xl">
-                <h3 className="mb-4 text-2xl font-bold text-gray-900">
+              <div className="p-6 bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600 rounded-3xl shadow-xl shadow-amber-950/20 border border-amber-400/40">
+                <h3 className="mb-4 text-2xl font-black text-neutral-950">
                   Why Order From Pizza House?
                 </h3>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                   <div className="p-4 bg-white rounded-xl">
-                    <div className="inline-flex p-3 mb-4 bg-yellow-100 rounded-lg">
-                      <Clock className="w-6 h-6 text-yellow-600" />
+                    <div className="inline-flex p-3 mb-4 bg-amber-500/15 rounded-lg">
+                      <Clock className="w-6 h-6 text-amber-600" />
                     </div>
                     <h4 className="mb-2 font-bold text-gray-900">Fast Delivery</h4>
                     <p className="text-gray-600">Average delivery time: 30-45 minutes</p>
                   </div>
                   
                   <div className="p-4 bg-white rounded-xl">
-                    <div className="inline-flex p-3 mb-4 bg-yellow-100 rounded-lg">
-                      <MapPin className="w-6 h-6 text-yellow-600" />
+                    <div className="inline-flex p-3 mb-4 bg-amber-500/15 rounded-lg">
+                      <MapPin className="w-6 h-6 text-amber-600" />
                     </div>
                     <h4 className="mb-2 font-bold text-gray-900">10+ Locations</h4>
                     <p className="text-gray-600">Across major cities in Egypt</p>
                   </div>
                   
                   <div className="p-4 bg-white rounded-xl">
-                    <div className="inline-flex p-3 mb-4 bg-yellow-100 rounded-lg">
-                      <Phone className="w-6 h-6 text-yellow-600" />
+                    <div className="inline-flex p-3 mb-4 bg-amber-500/15 rounded-lg">
+                      <Phone className="w-6 h-6 text-amber-600" />
                     </div>
                     <h4 className="mb-2 font-bold text-gray-900">24/7 Support</h4>
                     <p className="text-gray-600">Customer service available around the clock</p>
@@ -250,16 +250,16 @@ export default function Order() {
             
             {/* معلومات المطعم المحدد */}
             <div className="lg:col-span-1">
-              <div className="sticky p-6 border border-yellow-500 rounded-2xl top-22">
+              <div className="sticky p-6 border border-amber-500/30 bg-neutral-900/90 shadow-xl rounded-2xl top-22">
                 {selectedRestaurant ? (
                   <>
-                    <h2 className="mb-6 text-2xl font-bold text-yellow-500">
+                    <h2 className="mb-6 text-2xl font-black text-amber-400">
                       {selectedRestaurant.name}
                     </h2>
                     
                     <div className="mb-6 space-y-4">
                       <div className="flex items-start gap-3">
-                        <MapPin className="w-5 h-5 mt-1 text-yellow-500 shrink-0" />
+                        <MapPin className="w-5 h-5 mt-1 text-amber-500 shrink-0" />
                         <div>
                           <p className="font-medium text-gray-300">Address</p>
                           <p className="text-gray-400">{selectedRestaurant.address}</p>
@@ -267,7 +267,7 @@ export default function Order() {
                       </div>
                       
                       <div className="flex items-center gap-3">
-                        <Phone className="w-5 h-5 text-yellow-500 shrink-0" />
+                        <Phone className="w-5 h-5 text-amber-500 shrink-0" />
                         <div>
                           <p className="font-medium text-gray-300">Phone</p>
                           <p className="text-gray-400">{selectedRestaurant.phone}</p>
@@ -275,7 +275,7 @@ export default function Order() {
                       </div>
                       
                       <div className="flex items-center gap-3">
-                        <Clock className="w-5 h-5 text-yellow-500 shrink-0" />
+                        <Clock className="w-5 h-5 text-amber-500 shrink-0" />
                         <div>
                           <p className="font-medium text-gray-300">Working Hours</p>
                           <p className="text-gray-400">{selectedRestaurant.hours}</p>
@@ -283,8 +283,8 @@ export default function Order() {
                       </div>
                       
                       <div className="flex items-center gap-3">
-                        <div className="px-3 py-1 text-sm font-bold text-yellow-700 bg-yellow-100 rounded-full">
-                          ★ {selectedRestaurant.rating}/5
+                        <div className="px-3 py-1 text-sm font-bold text-amber-400 bg-amber-500/15 rounded-full">
+                          {selectedRestaurant.rating} / 5
                         </div>
                         <p className="text-gray-400">Customer Rating</p>
                       </div>
@@ -295,7 +295,7 @@ export default function Order() {
                     <div className="space-y-4">
                       <button
                         onClick={() => window.open(selectedRestaurant.map, '_blank')}
-                        className="flex items-center justify-center w-full gap-2 px-6 py-3 font-bold text-white transition-colors bg-yellow-500 opacity-90 rounded-xl hover:bg-yellow-600"
+                        className="flex items-center justify-center w-full gap-2 px-6 py-3 font-black text-neutral-950 transition-all bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 rounded-xl hover:from-amber-600 hover:to-amber-700 shadow-lg shadow-amber-900/30"
                       >
                         <Navigation className="w-5 h-5" />
                         Open in Google Maps
@@ -303,7 +303,7 @@ export default function Order() {
                       
                       <button
                         onClick={() => window.location.href = `/menu?restaurant=${selectedRestaurant.id}`}
-                        className="flex items-center justify-center w-full gap-2 px-6 py-3 font-bold text-gray-900 transition-colors bg-white border border-gray-300 rounded-xl hover:bg-gray-100"
+                        className="flex items-center justify-center w-full gap-2 px-6 py-3 font-bold text-white transition-colors bg-neutral-800 border border-neutral-700 rounded-xl hover:bg-neutral-700"
                       >
                         Order from this location
                         <ChevronRight className="w-5 h-5" />
@@ -312,7 +312,7 @@ export default function Order() {
                     
                     <div className="pt-6 mt-6 border-t border-gray-700">
                       <p className="text-sm text-gray-400">
-                        💡 <span className="font-medium text-gray-300">Tip:</span> Orders placed before 10 PM will be delivered the same day.
+                        <span className="font-medium text-gray-300">Tip:</span> Orders placed before 10 PM will be delivered the same day.
                       </p>
                     </div>
                   </>
